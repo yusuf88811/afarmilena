@@ -6,7 +6,7 @@ from service.models.events import Event
 class Service(models.Model):
     name = models.CharField(max_length=250, blank=False, null=False)
     type = models.CharField(max_length=250, blank=False, null=False)
-    price = models.PositiveIntegerField(max_length=250, blank=True)
+    price = models.PositiveIntegerField(blank=True)
     image = models.ImageField(upload_to="images/", blank=True)
     video = models.FileField(upload_to='videos/', null=True, blank=True)
     description = models.CharField(max_length=500, blank=True, null=True)
