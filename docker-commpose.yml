@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  newdb:
+    image: postgres:10
+    container_name: newdb
+    environment:
+      - POSTGRES_DB=afarmilena
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=yusuf123
+    volumes:
+      - .:/code
+
+  app:
+    build: .
+    container_name: Blog
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - newdb
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
