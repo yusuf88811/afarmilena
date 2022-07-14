@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=yusuf123
     volumes:
-      - .:/code
+      - ./postgres-data:/var/lib/postgresql/data
 
   app:
     build: .
@@ -23,5 +23,5 @@ services:
       - .env
 
 volumes:
-    wedding_data:
+    newdb:
     app:
