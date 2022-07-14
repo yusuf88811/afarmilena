@@ -6,9 +6,16 @@ from .models import CustomUser
 from .serializers import UserSerializer
 
 
-class RegisterView(generics.CreateAPIView):
+class RegisterView(generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        password = "yusuf123"
+        serializer.save(password=password)
+        return Response(data=serializer.data)
 
 
 class BlacklistRefreshView(views.APIView):

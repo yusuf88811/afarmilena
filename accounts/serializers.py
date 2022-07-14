@@ -8,7 +8,7 @@ from django.contrib.auth.hashers import make_password
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['username', 'phone', 'cite', 'wedding_date', 'password']
+        fields = ['username', 'phone', 'cite', 'wedding_date']
 
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
