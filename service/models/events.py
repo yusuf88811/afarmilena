@@ -9,6 +9,9 @@ class Event(models.Model):
     active = models.BooleanField(blank=False, null=False)
     description = models.CharField(max_length=500, blank=True)
 
+    def __str__(self):
+        return str(self.name)
+
     class Meta:
         verbose_name_plural = "Мероприятие"
 
