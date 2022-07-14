@@ -43,6 +43,9 @@ class WeddingHall(models.Model):
     image = models.FileField(upload_to='media/', blank=True, null=True)
     event = models.ManyToManyField(Event, related_name="wedding_hall")
 
+    class Meta:
+        verbose_name_plural = "Ресторан"
+
 
 class Menu(models.Model):
     type = models.CharField(max_length=250, blank=False, null=False)
