@@ -122,6 +122,7 @@ class OrderView(generics.ListAPIView):
 
         services = Service.objects.filter(pk__in=request.data.get('service')).all()
 
+
         for service in services:
             total_price += service.price
         total_price += menu.price * people_count
