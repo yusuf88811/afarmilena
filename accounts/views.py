@@ -18,6 +18,7 @@ class RegisterView(generics.ListAPIView):
         return Response(data=serializer.data)
 
 
+
 class BlacklistRefreshView(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
 
