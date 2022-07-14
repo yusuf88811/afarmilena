@@ -13,7 +13,7 @@ services:
 
   app:
     build: .
-    container_name: Blog
+    container_name: afarmilena
     command: python manage.py runserver 0.0.0.0:8000
     depends_on:
       - newdb
