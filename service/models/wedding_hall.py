@@ -4,9 +4,42 @@ from service.models.events import Event
 
 
 class WeddingHall(models.Model):
+    TOSHKENT = "Toshkent"
+    TOSHKENT_V = "Toshkent_v"
+    ANDIJON = "Andijon "
+    BUXORO = "Buxoro"
+    FARGONA = "Farg'ona"
+    SIRDARYO = "Sirdaryo"
+    JIZZAX = "Jizzax"
+    NAMANGAN = "Namangan"
+    NAVOIY = "Navoiy"
+    QORAQAL = "Qoraqalpog'iston Respublikasi"
+    SAMARQAND = "Samarqand"
+    SURXONDARYO = "Surxondaryo"
+    XORAZM = "Xorazm"
+    QASHQADARYO = "Qashqadaryo"
+
+    CITE = (
+        (TOSHKENT, "Toshkent"),
+        (TOSHKENT_V, "Toshkent_v"),
+        (ANDIJON, "Andijon"),
+        (BUXORO, "Buxoro"),
+        (FARGONA, "Farg'ona"),
+        (SIRDARYO, "Sirdaryo"),
+        (JIZZAX, "Jizzax"),
+        (NAMANGAN, "Namangan"),
+        (NAVOIY, "Navoiy"),
+        (QORAQAL, "Qoraqalpog'iston Respublikasi"),
+        (SAMARQAND, "Samarqand"),
+        (SURXONDARYO, "Surxondaryo"),
+        (XORAZM, "Xorazm"),
+        (QASHQADARYO, "Qashqadaryo"),
+
+    )
+
     name = models.CharField(max_length=250, blank=False, null=False)
     address = models.CharField(max_length=250, blank=False, null=False)
-    cite = models.CharField(max_length=250, blank=False, null=False)
+    cite = models.CharField(max_length=50, choices=CITE)
     image = models.FileField(upload_to='media/', blank=True, null=True)
     event = models.ManyToManyField(Event, related_name="wedding_hall")
 
@@ -20,6 +53,9 @@ class Menu(models.Model):
     def save(self, *args, **kwargs):
         super(Menu, self).save(*args, **kwargs)
 
+    class Meta:
+        verbose_name_plural = "Меню"
+
     def __str__(self):
         return self.type
 
@@ -30,3 +66,6 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "Пункты меню"

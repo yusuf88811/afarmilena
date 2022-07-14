@@ -26,6 +26,9 @@ class Order(models.Model):
     service = models.ManyToManyField(Service, related_name="order")
     status = models.CharField(max_length=15, choices=STATUS, blank=True, default=IN_PROCESS)
 
+    class Meta:
+        verbose_name_plural = "Заказ"
+
     def __str__(self):
         return str(self.user)
 
@@ -39,4 +42,3 @@ class Order(models.Model):
         return (totl_pirce)
 
     # def total_prices(self):
-
