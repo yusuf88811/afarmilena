@@ -9,7 +9,6 @@ COPY requirements.txt ./code
 COPY . .
 
 RUN pip install --upgrade pip
-RUN pip install django
 RUN pip install -r requirements.txt 
 
 
