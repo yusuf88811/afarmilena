@@ -32,6 +32,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ["172.105.76.9"]
 ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # Application definition
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "rest_framework_simplejwt",
     "drf_yasg",
+    "corsheaders",
     # may_apps
     'accounts',
     "service",
@@ -191,7 +193,18 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = (
+#   'http://localhost:3000',
+# )
+
+ALLOWED_HOSTS = ['http://localhost:3000']
+
+
 CORS_ORIGIN_ALLOW_ALL = False
+
 CORS_ORIGIN_WHITELIST = (
-  'http://localhost:3000',
+
+    'http://localhost:3000',
+
 )
