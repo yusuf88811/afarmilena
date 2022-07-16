@@ -51,16 +51,13 @@ INSTALLED_APPS = [
     # may_apps
     'accounts',
     "service",
+    "corsheaders",
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
-    # "corsheaders.middleware.CorsMiddleware",
-    # "django.middleware.common.CommonMiddleware",
-
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -68,6 +65,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+  'http://localhost:2000',
+)
 
 ROOT_URLCONF = 'config.urls'
 
@@ -198,9 +201,3 @@ MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-# CORS_ORIGIN_ALLOW_ALL = True
-
-# CORS_ORIGIN_ALLOW_ALL = False
-# CORS_ORIGIN_WHITELIST = (
-#   'http://localhost:3000',
-# )
