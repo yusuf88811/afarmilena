@@ -193,5 +193,5 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-  'http://172.105.76.9:8000/service/services',
+  'http://localhost:3000',
 )
