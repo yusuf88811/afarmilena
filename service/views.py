@@ -110,6 +110,8 @@ class WeddingHallView(generics.ListAPIView):
 
 
 class ServiceView(generics.ListAPIView):
+
+
     queryset = Service.objects.all()
     serializer_class = ServiceSerializers
 

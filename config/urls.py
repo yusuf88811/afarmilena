@@ -20,6 +20,21 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework.permissions import AllowAny
 
+
+def application(environ, start_response):
+    if environ['REQUEST_METHOD'] == 'OPTIONS':
+        start_response(
+            '200 OK',
+            [
+                ('Content-Type', 'application/json'),
+                ('Access-Control-Allow-Origin', '*'),
+                ('Access-Control-Allow-Headers', 'Authorization, Content-Type'),
+                ('Access-Control-Allow-Methods', 'POST'),
+            ]
+        )
+        return ''
+
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Wedding Application Rest API",
