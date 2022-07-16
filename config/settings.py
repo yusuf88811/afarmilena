@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "rest_framework_simplejwt",
     "drf_yasg",
-    # "corsheaders",
+    "corsheaders",
     # may_apps
     'accounts',
     "service",
