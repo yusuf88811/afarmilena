@@ -197,14 +197,3 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 # CORS_ORIGIN_WHITELIST = (
 #   'http://localhost:3000',
 # )
-
-# ALLOWED_HOSTS = ['http://localhost:3000']
-#
-#
-# CORS_ORIGIN_ALLOW_ALL = False
-#
-# CORS_ORIGIN_WHITELIST = (
-#
-#     'http://localhost:3000',
-#
-# )
