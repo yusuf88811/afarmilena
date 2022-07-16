@@ -12,6 +12,7 @@ router.register('services', ServiceView)
 router.register('menu_items', MenuItemView)
 # router.register('order', OrderView)
 
+
 urlpatterns = [
     # path("system/", SystemInformationList.as_view(), name='system'),
     # path("system/<int:pk>/", SystemInformationDetail.as_view(), name='syste'),
