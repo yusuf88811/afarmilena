@@ -9,8 +9,10 @@ from accounts.models import BlockList
 from service.models import SystemInformation, Service
 from service.models import Event
 from service.models.booked_dates import BookedDates
+from service.models.history import History
 from service.models.order import Order
 from service.models.wedding_hall import Menu, WeddingHall, MenuItem
+from service.serializers.history_serializers import HistorySerializer
 from service.serializers.order_serializers import OrderPostSerializer, OrderGetSerializer
 from service.serializers.service_serializers import ServiceSerializers
 from service.serializers.system_information_serializers import SystemInformationSerializers
@@ -110,6 +112,11 @@ class WeddingHallView(generics.ListAPIView):
 class ServiceView(generics.ListAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializers
+
+
+class HistoryView(generics.ListAPIView):
+    queryset = History.objects.all()
+    serializer_class = HistorySerializer
 
 
 class OrderView(generics.ListAPIView):

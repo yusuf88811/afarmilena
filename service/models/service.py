@@ -7,7 +7,7 @@ class Service(models.Model):
     name = models.CharField(max_length=250, blank=False, null=False)
     type = models.CharField(max_length=250, blank=False, null=False)
     price = models.PositiveIntegerField(blank=True)
-    image = models.ImageField(upload_to="images/", blank=True)
+    image = models.ImageField(upload_to="media/", blank=True)
     video = models.FileField(upload_to='videos/', null=True, blank=True)
     description = models.CharField(max_length=500, blank=True, null=True)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
