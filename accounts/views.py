@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from rest_framework import generics, views, permissions
+from marshmallow import ValidationError
+from rest_framework import generics, views, permissions, viewsets
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import CustomUser
-from .serializers import UserSerializer
+from .models import CustomUser, BlockList
+from .serializers import UserSerializer, BlockListSerializer
 
 
 class RegisterView(generics.ListAPIView):
@@ -15,9 +16,8 @@ class RegisterView(generics.ListAPIView):
         serializer.is_valid(raise_exception=True)
         password = "yusuf123"
         serializer.save(password=password)
+
         return Response(data=serializer.data)
-
-
 
 
 class BlacklistRefreshView(views.APIView):
@@ -27,3 +27,8 @@ class BlacklistRefreshView(views.APIView):
         token = RefreshToken(request.data.get('refresh'))
         token.blacklist()
         return Response("Success")
+
+
+class BlockListView(viewsets.ModelViewSet):
+    queryset = BlockList.objects.all()
+    serializer_class = BlockListSerializer

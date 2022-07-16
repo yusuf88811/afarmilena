@@ -95,11 +95,14 @@ class WeddingHallView(generics.ListAPIView):
     def get_queryset(self):
         cite = self.request.user.cite
         date = self.request.user.wedding_date
+        events_id = self.request.query_params.get("id")
+        wedding_hall = WeddingHall.objects.filter(event=events_id).all()
         booked_dates = BookedDates.objects.filter(date=date).values_list('wedding_hall_id', flat=True)
         if booked_dates.exists():
-            restorans = WeddingHall.objects.all().exclude(id__in=booked_dates)
+            # restorans = WeddingHall.objects.all().exclude(id__in=booked_dates)
+            restorans = wedding_hall.exclude(id__in=booked_dates)
             return WeddingHall.objects.filter(id__in=restorans, cite=cite)
-        return WeddingHall.objects.filter(cite=cite)
+        return wedding_hall.filter(cite=cite)
 
 
 class ServiceView(viewsets.ModelViewSet):
