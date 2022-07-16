@@ -23,6 +23,6 @@ services:
     env_file:
       - .env
 
-#volumes:
-#    newdb:
-#    app:
+volumes:
+    newdb:
+    app:
