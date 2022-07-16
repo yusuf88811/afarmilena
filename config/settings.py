@@ -34,9 +34,6 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 
-
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +47,6 @@ INSTALLED_APPS = [
     'rest_framework',
     "rest_framework_simplejwt",
     "drf_yasg",
-    "corsheaders",
     # may_apps
     'accounts',
     "service",
@@ -64,7 +60,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -195,5 +190,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = "accounts.CustomUser"
-
-CORS_ORIGIN_ALLOW_ALL = True
