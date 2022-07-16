@@ -109,6 +109,7 @@ class WeddingHallView(generics.ListAPIView):
         return wedding_hall.filter(cite=cite)
 
 
+
 class ServiceView(generics.ListAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializers
