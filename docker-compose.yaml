@@ -10,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=yusuf123
     volumes:
 #      - .:/code
-      - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres-data:/code/lib/postgresql/data
 
   app:
     build: .
