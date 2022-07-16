@@ -1,10 +1,9 @@
 #!/bin/bosh
-python3 manage.py makemigrations
-python3 manage.py migrate
 
 
 
-if [ "$POSTGRES_DB" = "postgres" ]
+
+if [ "$POSTGRES_DB" = "afarmilena" ]
 then
     echo "Waiting for postgres..."
 
