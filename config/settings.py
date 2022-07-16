@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # may_apps
     'accounts',
     "service",
+
 ]
 
 MIDDLEWARE = [
