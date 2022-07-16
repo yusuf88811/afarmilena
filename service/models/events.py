@@ -8,7 +8,7 @@ class Event(models.Model):
     name = models.CharField(max_length=150, blank=False, null=False)
     active = models.BooleanField(blank=False, null=False)
     description = models.CharField(max_length=500, blank=True)
-    image = models.ImageField(upload_to='media/', blank=True)
+    image = models.ImageField(upload_to='', blank=True)
 
     def __str__(self):
         return str(self.name)
