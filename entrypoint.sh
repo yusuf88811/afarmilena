@@ -1,8 +1,7 @@
 #!/bin/bosh
 
 
-python3 manage.py makemigrations
-python3 manage.py migrate
+
 
 if [ "$POSTGRES_DB" = "postgres" ]
 then
@@ -15,5 +14,6 @@ then
     echo "PostgreSQL started"
 fi
 
-
+python3 manage.py makemigrations
+python3 manage.py migrate
 exec "$@"
