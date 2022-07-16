@@ -21,6 +21,8 @@ jobs:
           cd afarmilena
           git pull
           docker compose down
-          docker compose up -d --build
-#          docker compose -d up --build
+#          docker compose up -d --build
+
+          docker-compose build
+          docker-compose up
 
