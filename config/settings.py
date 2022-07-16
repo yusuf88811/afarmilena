@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "rest_framework_simplejwt",
     "drf_yasg",
-    "corsheaders",
+    # "corsheaders",
     # may_apps
     'accounts',
     "service",
@@ -58,8 +58,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
+    # "corsheaders.middleware.CorsMiddleware",
+    # "django.middleware.common.CommonMiddleware",
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
