@@ -3,7 +3,7 @@
 
 
 
-if [ "$POSTGRES_DB" = "afarmilena" ]
+if [ "$POSTGRES_DB" = "postgres" ]
 then
     echo "Waiting for postgres..."
 
