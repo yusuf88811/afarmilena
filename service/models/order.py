@@ -19,7 +19,7 @@ class Order(models.Model):
     )
 
     total_price = models.PositiveIntegerField(default=0, null=True, blank=True)
-    people_count = models.PositiveIntegerField(default=1, blank=True, null=True)
+    people_count = models.PositiveIntegerField(default=1)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, blank=False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=False)
     wedding_hall = models.ForeignKey(WeddingHall, on_delete=models.CASCADE, related_name="order", blank=False)

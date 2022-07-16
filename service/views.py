@@ -1,9 +1,11 @@
+from django.http import HttpResponseNotAllowed
 from rest_framework import viewsets, status, generics, permissions
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
+from accounts.models import BlockList
 from service.models import SystemInformation, Service
 from service.models import Event
 from service.models.booked_dates import BookedDates
@@ -52,7 +54,7 @@ class IsAdminUser(permissions.BasePermission):
         return request.user.is_staff
 
 
-class SystemInfoView(viewsets.ModelViewSet):
+class SystemInfoView(generics.ListAPIView):
     queryset = SystemInformation.objects.all()
     serializer_class = SystemInformationSerializers
     permission_classes = [IsAdminUser]
@@ -61,7 +63,7 @@ class SystemInfoView(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class EventViews(viewsets.ModelViewSet):
+class EventViews(generics.ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializers
     permission_classes = [IsAdminUser]
@@ -70,12 +72,12 @@ class EventViews(viewsets.ModelViewSet):
     #     serializer.save(user=self.request.user)
 
 
-class MenuView(viewsets.ModelViewSet):
+class MenuView(generics.ListAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializers
 
 
-class MenuItemView(viewsets.ModelViewSet):
+class MenuItemView(generics.ListAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializers
 
@@ -105,7 +107,7 @@ class WeddingHallView(generics.ListAPIView):
         return wedding_hall.filter(cite=cite)
 
 
-class ServiceView(viewsets.ModelViewSet):
+class ServiceView(generics.ListAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializers
 
@@ -116,23 +118,32 @@ class OrderView(generics.ListAPIView):
     queryset = Order.objects.all()
 
     def post(self, request):
-        serializer = OrderPostSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.validated_data['user'] = self.request.user
-        total_price = 0
-        menu = Menu.objects.get(pk=request.data.get("menu"))
-        people_count = request.data.get("people_count")
+        blacklist = BlockList.objects.all()
+        blacklist = blacklist.values("user_id")
+        user = self.request.user
+        list = []
+        for black in blacklist:
+            list.append(black['user_id'])
+        if user.id in list:
+            return HttpResponseNotAllowed("not allowed")
+        else:
 
-        services = Service.objects.filter(pk__in=request.data.get('service')).all()
+            serializer = OrderPostSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.validated_data['user'] = self.request.user
+            total_price = 0
+            menu = Menu.objects.get(pk=request.data.get("menu"))
+            # people_count = request.data.get("people_count")
 
+            services = Service.objects.filter(pk__in=request.data.get('service')).all()
 
-        for service in services:
-            total_price += service.price
-        total_price += menu.price * people_count
+            for service in services:
+                total_price += service.price
+            total_price += menu.price  # * people_count
 
-        serializer.save(total_price=total_price)
-        wedding_id = request.data.get('wedding_hall')
-        wedding_id = WeddingHall.objects.get(id=wedding_id)
-        wedding_date = self.request.user.wedding_date
-        booked_dates = BookedDates.objects.create(date=wedding_date, wedding_hall=wedding_id)
-        return Response(data=serializer.data)
+            serializer.save(total_price=total_price)
+            wedding_id = request.data.get('wedding_hall')
+            wedding_id = WeddingHall.objects.get(id=wedding_id)
+            wedding_date = self.request.user.wedding_date
+            booked_dates = BookedDates.objects.create(date=wedding_date, wedding_hall=wedding_id)
+            return Response(data=serializer.data)

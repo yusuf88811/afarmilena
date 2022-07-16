@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import CustomUser
+from .models import CustomUser, BlockList
 
-
+admin.site.register(BlockList)
 @admin.register(CustomUser)
 class UserAdmin(admin.ModelAdmin):
     list_display = ['username', 'phone']
