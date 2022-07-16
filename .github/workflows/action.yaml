@@ -20,7 +20,7 @@ jobs:
           cd ~
           cd afarmilena
           git pull
-          docker compose down
+#          docker compose down
           docker compose up -d --build
 
 #          docker-compose build
