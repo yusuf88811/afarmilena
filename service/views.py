@@ -114,9 +114,9 @@ class ServiceView(generics.ListAPIView):
     serializer_class = ServiceSerializers
 
 
-class HistoryView(generics.ListAPIView):
-    queryset = History.objects.all()
-    serializer_class = HistorySerializer
+# class HistoryView(generics.ListAPIView):
+#     queryset = History.objects.all()
+#     serializer_class = HistorySerializer
 
 
 class OrderView(generics.ListAPIView):

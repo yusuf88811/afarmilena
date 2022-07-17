@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import (SystemInfoView, EventViews, MenuView, WeddingHallView, ServiceView, MenuItemView, OrderView,HistoryView)
+from .views import (SystemInfoView, EventViews, MenuView, WeddingHallView, ServiceView, MenuItemView, OrderView)
 
 router = DefaultRouter()
 router.register('system', SystemInfoView)
@@ -24,7 +24,7 @@ urlpatterns = [
     path("menu_items/", MenuItemView.as_view()),
     path('wedding_hall/', WeddingHallView.as_view()),
     path('order/', OrderView.as_view()),
-    path('history/', HistoryView.as_view()),
+    # path('history/', HistoryView.as_view()),
 
 
 ]
