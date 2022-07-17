@@ -24,7 +24,7 @@ urlpatterns = [
     path("menu_items/", MenuItemView.as_view()),
     path('wedding_hall/', WeddingHallView.as_view()),
     path('order/', OrderView.as_view()),
-    # path('history/', HistoryView.as_view()),
+
 
 
 ]
