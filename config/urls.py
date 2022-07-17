@@ -13,12 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework.permissions import AllowAny
+
+from config import settings
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -33,8 +36,8 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('service/', include('service.urls')),
-    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-docs'),
-]
+                  path('admin/', admin.site.urls),
+                  path('accounts/', include('accounts.urls')),
+                  path('service/', include('service.urls')),
+                  path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-docs'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
