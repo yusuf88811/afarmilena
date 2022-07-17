@@ -47,11 +47,11 @@ class CustomUser(AbstractUser):
         else:
             raise ValidationError({'error': f"просто введите номер телефона {value}"})
 
-    username = models.CharField(max_length=30, unique=False)
+    # username = models.CharField(max_length=30, unique=False)
     phone = models.CharField(max_length=9, validators=[validate_length], unique=True)
     cite = models.CharField(max_length=50, choices=CITE)
     wedding_date = models.DateField(blank=True, null=True)
-    USERNAME_FIELD = 'phone'
+    # USERNAME_FIELD = 'phone'
 
     class Meta:
         ordering = ['-date_joined']
