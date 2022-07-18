@@ -36,6 +36,6 @@ class SystemInformationSerializers(serializers.HyperlinkedModelSerializer):
 
 
 class BaseImageSerializers(serializers.ModelSerializer):
-    class Ment:
+    class Meta:
         model = BaseImage
         fields = ['id', 'image', 'title']
