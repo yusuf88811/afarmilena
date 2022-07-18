@@ -1,6 +1,5 @@
 from statistics import mode
 
-
 from django.db import models
 
 
@@ -13,8 +12,8 @@ class SingletonModel(models.Model):
         super(SingletonModel, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-       self.pk = 1
-       super(SingletonModel, self).delete(*args, **kwargs)
+        self.pk = 1
+        super(SingletonModel, self).delete(*args, **kwargs)
 
     @classmethod
     def load(cls):
@@ -33,4 +32,4 @@ class SystemInformation(SingletonModel):
 
 class SysteminfoImage(models.Model):
     system_info = models.ForeignKey(SystemInformation, on_delete=models.CASCADE)
-    image = models.FileField(blank=True)
+    image = models.ImageField(upload_to='', blank=True)
