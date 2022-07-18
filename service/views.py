@@ -11,11 +11,12 @@ from service.models import Event
 from service.models.booked_dates import BookedDates
 # from service.models.history import History
 from service.models.order import Order
+from service.models.system_information import BaseImage
 from service.models.wedding_hall import Menu, WeddingHall, MenuItem
 # from service.serializers.history_serializers import HistorySerializer
 from service.serializers.order_serializers import OrderPostSerializer, OrderGetSerializer
 from service.serializers.service_serializers import ServiceSerializers
-from service.serializers.system_information_serializers import SystemInformationSerializers
+from service.serializers.system_information_serializers import SystemInformationSerializers, BaseImageSerializers
 from service.serializers.events_serializers import EventSerializers
 
 # Create your views here.
@@ -118,6 +119,10 @@ class ServiceView(generics.ListAPIView):
 #     queryset = History.objects.all()
 #     serializer_class = HistorySerializer
 
+class BaseImageview(generics.ListAPIView):
+    queryset = BaseImage
+    serializer_class = BaseImageSerializers
+
 
 class OrderView(generics.ListAPIView):
     serializer_class = OrderGetSerializer
@@ -152,7 +157,5 @@ class OrderView(generics.ListAPIView):
             wedding_id = request.data.get('wedding_hall')
             wedding_id = WeddingHall.objects.get(id=wedding_id)
             wedding_date = self.request.user.wedding_date
-            booked_dates = BookedDates.objects.create(date=wedding_date, wedding_hall=wedding_id)
+            BookedDates.objects.create(date=wedding_date, wedding_hall=wedding_id)
             return Response(data=serializer.data)
-
-

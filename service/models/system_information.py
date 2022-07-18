@@ -33,3 +33,8 @@ class SystemInformation(SingletonModel):
 class SysteminfoImage(models.Model):
     system_info = models.ForeignKey(SystemInformation, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='', blank=True)
+
+
+class BaseImage(models.Model):
+    image = models.ImageField(upload_to="", blank=True)
+    title = models.CharField(max_length=100, blank=True, null=True)

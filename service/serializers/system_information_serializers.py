@@ -8,7 +8,7 @@ from service.models import SystemInformation
 #     class Meta:
 #         model = SystemInformation
 #         fields = ["id", "name", "type", "description"]
-from service.models.system_information import SysteminfoImage
+from service.models.system_information import SysteminfoImage, BaseImage
 
 
 class SysteminfoImageSerializer(serializers.ModelSerializer):
@@ -33,3 +33,9 @@ class SystemInformationSerializers(serializers.HyperlinkedModelSerializer):
             SysteminfoImage.objects.create(system_info=system_info, image=image_data)
 
         return system_info
+
+
+class BaseImageSerializers(serializers.ModelSerializer):
+    class Ment:
+        model = BaseImage
+        system_info = ['image', 'title']
