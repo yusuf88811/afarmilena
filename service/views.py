@@ -155,3 +155,4 @@ class OrderView(generics.ListAPIView):
             booked_dates = BookedDates.objects.create(date=wedding_date, wedding_hall=wedding_id)
             return Response(data=serializer.data)
 
+
