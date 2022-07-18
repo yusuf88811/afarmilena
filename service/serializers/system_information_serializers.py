@@ -38,4 +38,4 @@ class SystemInformationSerializers(serializers.HyperlinkedModelSerializer):
 class BaseImageSerializers(serializers.ModelSerializer):
     class Ment:
         model = BaseImage
-        system_info = ['image', 'title']
+        system_info = ['id', 'image', 'title']
