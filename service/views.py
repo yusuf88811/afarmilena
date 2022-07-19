@@ -120,9 +120,8 @@ class ServiceView(generics.ListAPIView):
 #     serializer_class = HistorySerializer
 
 class BaseImageview(generics.ListAPIView):
-    queryset = BaseImage
+    queryset = BaseImage.objects.all()
     serializer_class = BaseImageSerializers
-
 
 
 class OrderView(generics.ListAPIView):
