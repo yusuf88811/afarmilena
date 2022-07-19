@@ -10,8 +10,8 @@ class MenuItemSerializers(serializers.ModelSerializer):
 
 
 class MenuSerializers(serializers.ModelSerializer):
-    # menu_items = MenuItemSerializers(many=True)
-    menu_items = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    menu_items = MenuItemSerializers(many=True)
+    # menu_items = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Menu
