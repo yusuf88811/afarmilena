@@ -1,11 +1,16 @@
+name: My name
+
+on: [push]
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Executing remote command
+
+    - uses: actions/checkout@v1
+    - name: Executing remote command
       uses: appleboy/ssh-action@master
       with:
         host: 172.105.76.9
@@ -17,12 +22,5 @@ jobs:
           cd afarmilena
           git pull
           docker compose down
-#          docker system prune -a --volumes
           docker compose up -d --build
-
-#          docker-compose build
-#          docker-compose up
-
-
-
 
